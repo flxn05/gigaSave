@@ -60,3 +60,10 @@ input[type="text"] {
 ::placeholder {
   color: white;
 }
+
+button {
+  background-color: var(--accent);
+  padding-inline: 36px;
+  padding-block: 12px;
+  cursor: pointer;
+}

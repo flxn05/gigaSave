@@ -1,18 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gigaSave</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Command-Line-Interface</title>
+  <style>
+    ::selection {
+      background-color: #12b886;
+      color: black;
+    }
+
+
+    body {
+      background-color: #000;
+      color: #12b886;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      font-size: .9rem;
+      cursor: text;
+    }
+    #output {
+      flex: 12;
+      padding: 10px;
+      white-space: pre-wrap;
+      overflow-y: auto;
+    }
+    #input-container {
+      flex: 1;
+      border-top: 1px solid #12b886;
+      padding: 10px;
+    }
+    #input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: #12b886;
+      font-family: monospace;
+      font-size: 1rem;
+      width: 100%;
+      outline: none;
+      padding-bottom: 3rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="app">
-  <main>
-    <h1>gigaSave</h1>
-    <input type="text" placeholder="Enter link to download" autofocus>
-    <button>Download</button>
-  </main>
+  <div id="output"></div>
+  <div id="input-container">
+    <span>&gt;</span>
+    <input type="text" id="input" autocomplete="off" autofocus>
   </div>
+
+  <script>
+    const output = document.getElementById("output");
+    const input = document.getElementById("input");
+
+    function log(message, isCommand = false) {
+  const logLine = document.createElement("div");
+
+  if (isCommand) {
+    const prefix = document.createElement("span");
+    prefix.textContent = "\nuser@gigasave >>> ";
+    prefix.style.color = "#fff"; // Weißer Präfix
+    logLine.appendChild(prefix);
+  }
+
+  const text = document.createElement("span");
+  logLine.appendChild(text);
+  output.appendChild(logLine);
+
+  let index = 0;
+  const batchSize = 2; // Anzahl der Zeichen pro Intervall (schnellerer Effekt)
+
+  const interval = setInterval(() => {
+    if (index < message.length) {
+      text.textContent += message.slice(index, index + batchSize);
+      index += batchSize; // Mehr Zeichen pro Intervall hinzufügen
+      output.scrollTop = output.scrollHeight; // Immediate scroll
+      setTimeout(() => {
+        output.scrollTop = output.scrollHeight; // Ensure final scroll
+      }, 0);
+    } else {
+      clearInterval(interval);
+    }
+  }, 1); // Effektiv schneller durch batchSize
+}
+
+
+
+
+
+// Eingabe anzeigen mit Präfix für Benutzerbefehle
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const command = input.value.trim();
+    log(command, true); // Benutzerbefehl mit Präfix
+    input.value = ""; // Eingabe leeren
+    processCommand(command); // Befehl verarbeiten
+  }
+});
+
+
+    // Beispiel für die Befehlsverarbeitung
+    function processCommand(command) {
+      if (command === "link") {
+        log("----------\nDownload " + "VIDEO_TITLE" + "? [y/n]");
+      } else if (command === "") {
+        log("");
+      } else {
+        log(`Unknown Error: '${command}' is not defined.`);
+      }
+    }
+
+    // Startnachricht
+    log("Free Open-Source YouTube Video Downloader\nPaste your link below! \n");
+  </script>
 </body>
 </html>

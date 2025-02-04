@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(26, 26, 26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lightgrey;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  position: fixed;
+  top: 5vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+input {
+  width: 66vw;
+  padding-block: 8px;
+  border: none;
+  display: block;
+  margin-bottom: 24px;
+}
+
+button {
+  background-color: #12b886;
+  border: none;
+  width: calc(33vw - 2px);
+  height: 2rem;
+  font-weight: bold;
+}
+
+::placeholder {
+  color: grey
+}

@@ -1,5 +1,10 @@
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
 }
 
 body {
@@ -34,8 +39,41 @@ button {
   width: calc(33vw - 2px);
   height: 2rem;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: saturate(1.5);
 }
 
 ::placeholder {
   color: grey
+}
+
+@media (min-width: 600px) {
+  input {
+    max-width: 512px;
+  }
+
+  button {
+    max-width: 256px;
+  }
+}
+
+.clicked {
+  animation: clicked 0.5s;
+}
+
+@keyframes clicked {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(.8);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
 }

@@ -10,12 +10,41 @@
 
 <body>
   <main>
-    <input type="text" placeholder="Paste YouTube URL here" autofocus autocapitalize="off" autocorrect="off" spellcheck="false">
-    <button>MP4</button>
-    <button>MP3</button>
+    <input type="text" placeholder="Paste YouTube URL here" autofocus autocapitalize="off" autocorrect="off"
+      spellcheck="false" id="link">
+    <button id="downloadmp4" onclick="downloadmp4()">MP4</button>
+    <button id="downloadmp3" onclick="downloadmp3()">MP3</button>
   </main>
 
   <h1>gigaSave</h1>
+  <script>
+    const mp4 = document.getElementById('downloadmp4');
+    const mp3 = document.getElementById('downloadmp3');
+    let videoTitle = 'These 5 tips will make you a sigma'; // This will be replaced with the actual video title
+
+
+    function downloadmp4() {
+      const link = document.getElementById('link').value;
+      console.log('Downloading video "' + videoTitle + '" ' + link);
+      mp4.classList.add('clicked');
+      setTimeout(() => {
+        mp4.classList.remove('clicked');
+      }, 150);
+      mp4.textContent = 'preparing';
+      console.log('starting download.');
+    }
+
+    function downloadmp3() {
+      const link = document.getElementById('link').value;
+      console.log('Downloading audio "' + videoTitle + '" ' + link);
+      mp3.classList.add('clicked');
+      setTimeout(() => {
+        mp3.classList.remove('clicked');
+      }, 150);
+      mp3.textContent = 'preparing';
+      console.log('starting download.');
+    }
+  </script>
 </body>
 
 </html>

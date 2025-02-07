@@ -17,15 +17,16 @@
   </main>
 
   <h1>gigaSave</h1>
+  <div id="logOutput"></div>
+
   <script>
     const mp4 = document.getElementById('downloadmp4');
     const mp3 = document.getElementById('downloadmp3');
-    let videoTitle = 'These 5 tips will make you a sigma'; // This will be replaced with the actual video title
 
 
     function downloadmp4() {
       const link = document.getElementById('link').value;
-      console.log('Downloading video "' + videoTitle + '" ' + link);
+      console.log('Downloading video ' + link);
       mp4.classList.add('clicked');
       setTimeout(() => {
         mp4.classList.remove('clicked');
@@ -36,7 +37,7 @@
 
     function downloadmp3() {
       const link = document.getElementById('link').value;
-      console.log('Downloading audio "' + videoTitle + '" ' + link);
+      console.log('Downloading audio ' + link);
       mp3.classList.add('clicked');
       setTimeout(() => {
         mp3.classList.remove('clicked');
